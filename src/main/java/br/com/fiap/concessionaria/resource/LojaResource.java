@@ -39,7 +39,7 @@ public class LojaResource implements ResourceDTO<Loja, LojaRequest, LojaResponse
 
     @GetMapping
     public ResponseEntity<Collection<LojaResponse>> findAll(
-            @RequestParam(name = "caracteristica.nome", required = false) String nome,
+            @RequestParam(name = "caracteristica.nome", required = false) String nome
     ) {
 
         Loja loja = Loja.builder()
