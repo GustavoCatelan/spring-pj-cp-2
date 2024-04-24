@@ -57,7 +57,4 @@ public class LojaSevice implements ServiceDTO<Loja, LojaRequest, LojaResponse>{
         return repo.save( e );
     }
 
-    public List<Loja> findByVeiculoId(Long id) {
-        return repo.findByVeiculoId( id );
-    }
 }

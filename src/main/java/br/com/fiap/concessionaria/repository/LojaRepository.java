@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface LojaRepository extends JpaRepository<Loja, Long> {
-    List<Loja> findByVeiculoId(Long id);
+
 }

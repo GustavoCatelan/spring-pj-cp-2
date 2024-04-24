@@ -22,10 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/loja")
@@ -87,22 +84,15 @@ public class LojaResource implements ResourceDTO<Loja, LojaRequest, LojaResponse
         return ResponseEntity.created( uri ).body( resposta );
     }
 
-    @GetMapping(value = "{id}/veiculos")
-    public ResponseEntity<List<LojaResponse>> findByVeiculoId(@PathVariable Long id) {
-        var entity = service.findByVeiculoId( id );
-        if (Objects.isNull( entity )) return ResponseEntity.notFound().build();
-        var response = entity.stream().map( service::toResponse ).toList();
-        return ResponseEntity.ok( response );
-    }
 
     @Transactional
-    @PostMapping(value = "{id}/veiculos")
-    public LojaResponse save(@PathVariable Long id, @RequestBody @Valid AbstractRequest veiculo) {
-        if (Objects.isNull(veiculo)) return null;
+    @PostMapping(value = "/{id}/veiculos")
+    public LojaResponse save(@PathVariable Long id, @RequestBody @Valid AbstractRequest veiculos) {
+        if (Objects.isNull(veiculos)) return null;
         Loja loja = service.findById(id);
         Veiculo veiculoEntity = null;
-        if (Objects.nonNull(veiculo.id())) {
-            veiculoEntity = veiculoRepository.findById(veiculo.id()).orElseThrow();
+        if (Objects.nonNull(veiculos.id())) {
+            veiculoEntity = veiculoRepository.findById(veiculos.id()).orElseThrow();
         }
         loja.getVeiculosComercializados().add(veiculoEntity);
         return service.toResponse(loja);

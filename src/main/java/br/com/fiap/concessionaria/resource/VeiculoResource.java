@@ -101,16 +101,18 @@ public class VeiculoResource implements ResourceDTO<Veiculo, VeiculoRequest, Vei
         return ResponseEntity.created( uri ).body( resposta );
     }
 
-   @GetMapping(value = "{id}/acessorio")
-   public ResponseEntity<List<VeiculoResponse>> findByAcessorios(@PathVariable Long id) {
-       var entity = service.findByAcessorios( id );
-       if (Objects.isNull( entity )) return ResponseEntity.notFound().build();
-       var response = entity.stream().map( service::toResponse ).toList();
-       return ResponseEntity.ok( response );
-   }
+    @GetMapping(value = "/{id}/acessorios")
+    public ResponseEntity<List<Acessorio>> findAcessoriosByVeiculoId(@PathVariable Long id) {
+        Veiculo veiculo = service.findById(id);
+        if (veiculo == null) {
+            return ResponseEntity.notFound().build();
+        }
+        List<Acessorio> acessorios = (List<Acessorio>) veiculo.getAcessorios();
+        return ResponseEntity.ok(acessorios);
+    }
 
     @Transactional
-    @PostMapping(value = "{id}/acessorio")
+    @PostMapping(value = "/{id}/acessorio")
     public VeiculoResponse save(@PathVariable Long id, @RequestBody @Valid AbstractRequest acessorio) {
         if (Objects.isNull(acessorio)) return null;
         Veiculo veiculo = service.findById(id);
