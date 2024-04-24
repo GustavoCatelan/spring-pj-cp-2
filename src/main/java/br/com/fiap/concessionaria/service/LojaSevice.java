@@ -4,6 +4,7 @@ import br.com.fiap.concessionaria.dto.request.LojaRequest;
 import br.com.fiap.concessionaria.dto.response.LojaResponse;
 import br.com.fiap.concessionaria.dto.response.VeiculoResponse;
 import br.com.fiap.concessionaria.entity.Loja;
+import br.com.fiap.concessionaria.entity.Veiculo;
 import br.com.fiap.concessionaria.repository.LojaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -54,5 +55,9 @@ public class LojaSevice implements ServiceDTO<Loja, LojaRequest, LojaResponse>{
     @Override
     public Loja save(Loja e) {
         return repo.save( e );
+    }
+
+    public List<Loja> findByVeiculoId(Long id) {
+        return repo.findByVeiculoId( id );
     }
 }

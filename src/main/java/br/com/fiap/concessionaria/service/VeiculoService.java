@@ -20,8 +20,7 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
 
     @Autowired
     private VeiculoRepository repo;
-    @Autowired
-    private VeiculoService veiculoService;
+
     @Autowired
     private FabricanteService fabricanteService;
 
@@ -60,7 +59,6 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
                 .palvaraDeEfeito(e.getPalavraDeEfeito())
                 .fabricante(fabricanteService.toResponse( e.getFabricante() ))
                 .tipo(tipoVeiculoService.toResponse( e.getTipo() ))
-                .acessorios(acessorioResponses)
                 .build();
     }
     @Override
@@ -74,5 +72,9 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
     @Override
     public Veiculo save(Veiculo e) {
         return repo.save( e );
+    }
+
+    public List<Veiculo> findByAcessorioId(Long id) {
+        return repo.findByAcessorioId( id );
     }
 }

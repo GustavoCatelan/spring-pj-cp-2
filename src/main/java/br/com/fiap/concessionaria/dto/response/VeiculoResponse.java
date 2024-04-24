@@ -5,6 +5,7 @@ import br.com.fiap.concessionaria.entity.TipoVeiculo;
 import lombok.Builder;
 
 import java.time.Year;
+import java.util.Set;
 
 @Builder
 public record VeiculoResponse(

@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "TB_ACESSORIO")
+@Table(name = "TB_ACESSORIO",uniqueConstraints = {
+        @UniqueConstraint(name = "UK_ACESSORIO_NOME", columnNames = {"NM_ACESSORIO"})
+})
 public class Acessorio {
 
     @Id
