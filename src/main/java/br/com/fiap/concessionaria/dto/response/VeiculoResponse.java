@@ -2,9 +2,11 @@ package br.com.fiap.concessionaria.dto.response;
 
 import br.com.fiap.concessionaria.entity.Fabricante;
 import br.com.fiap.concessionaria.entity.TipoVeiculo;
+import lombok.Builder;
 
 import java.time.Year;
 
+@Builder
 public record VeiculoResponse(
 
         String modelo,
