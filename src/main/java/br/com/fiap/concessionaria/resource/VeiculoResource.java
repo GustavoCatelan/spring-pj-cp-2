@@ -2,14 +2,12 @@ package br.com.fiap.concessionaria.resource;
 
 import br.com.fiap.concessionaria.dto.request.AbstractRequest;
 import br.com.fiap.concessionaria.dto.request.VeiculoRequest;
-import br.com.fiap.concessionaria.dto.response.AcessorioResponse;
 import br.com.fiap.concessionaria.dto.response.VeiculoResponse;
 import br.com.fiap.concessionaria.entity.Acessorio;
 import br.com.fiap.concessionaria.entity.Fabricante;
 import br.com.fiap.concessionaria.entity.TipoVeiculo;
 import br.com.fiap.concessionaria.entity.Veiculo;
 import br.com.fiap.concessionaria.repository.AcessorioRepository;
-import br.com.fiap.concessionaria.service.AcessorioService;
 import br.com.fiap.concessionaria.service.VeiculoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,6 @@ import java.time.Year;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/veiculos")
@@ -105,8 +102,8 @@ public class VeiculoResource implements ResourceDTO<Veiculo, VeiculoRequest, Vei
     }
 
    @GetMapping(value = "{id}/acessorio")
-   public ResponseEntity<List<VeiculoResponse>> findByAcessorioId(@PathVariable Long id) {
-       var entity = service.findByAcessorioId( id );
+   public ResponseEntity<List<VeiculoResponse>> findByAcessorios(@PathVariable Long id) {
+       var entity = service.findByAcessorios( id );
        if (Objects.isNull( entity )) return ResponseEntity.notFound().build();
        var response = entity.stream().map( service::toResponse ).toList();
        return ResponseEntity.ok( response );

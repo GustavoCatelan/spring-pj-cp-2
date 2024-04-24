@@ -74,7 +74,7 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
         return repo.save( e );
     }
 
-    public List<Veiculo> findByAcessorioId(Long id) {
-        return repo.findByAcessorioId( id );
+    public List<Veiculo> findByAcessorios(Long id) {
+        return repo.findByAcessorios( id );
     }
 }
