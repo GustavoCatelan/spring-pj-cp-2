@@ -1,5 +1,6 @@
 package br.com.fiap.concessionaria.dto.request;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -18,8 +19,10 @@ public record VeiculoRequest(
         @NotNull(message = "O nome é obrigatório")
         String nome,
 
+        @Valid
         AbstractRequest tipo,
 
+        @Valid
         AbstractRequest fabricante,
 
         String cor,

@@ -2,6 +2,7 @@ package br.com.fiap.concessionaria.resource;
 
 import br.com.fiap.concessionaria.dto.request.AbstractRequest;
 import br.com.fiap.concessionaria.dto.request.VeiculoRequest;
+import br.com.fiap.concessionaria.dto.response.AcessorioResponse;
 import br.com.fiap.concessionaria.dto.response.VeiculoResponse;
 import br.com.fiap.concessionaria.entity.Acessorio;
 import br.com.fiap.concessionaria.entity.Fabricante;
@@ -35,15 +36,13 @@ public class VeiculoResource implements ResourceDTO<Veiculo, VeiculoRequest, Vei
 
     @GetMapping
     public ResponseEntity<Collection<VeiculoResponse>> findAll(
-            @RequestParam(name = "fabricante.nome", required = false) String nome,
-            @RequestParam(name = "fabricante.anoFabricacao", required = false) Year anoFabricacao,
-            @RequestParam(name = "fabricante.cor", required = false) String cor,
-            @RequestParam(name = "fabricante.preco", required = false) Double preco,
-            @RequestParam(name = "fabricante.cilindradas", required = false) Short cilindradas,
-            @RequestParam(name = "fabricante.modelo", required = false) String modelo,
-            @RequestParam(name = "fabricante.palavraDeEfeito", required = false) String palavraDeEfeito,
-            @RequestParam(name = "fabricante.fabricante", required = false) Fabricante fabricante,
-            @RequestParam(name = "fabricante.tipo", required = false) TipoVeiculo tipo
+            @RequestParam(name = "nome", required = false) String nome,
+            @RequestParam(name = "anoFabricacao", required = false) Year anoFabricacao,
+            @RequestParam(name = "cor", required = false) String cor,
+            @RequestParam(name = "preco", required = false) Double preco,
+            @RequestParam(name = "cilindradas", required = false) Short cilindradas,
+            @RequestParam(name = "modelo", required = false) String modelo,
+            @RequestParam(name = "palavraDeEfeito", required = false) String palavraDeEfeito
             ) {
 
         Veiculo veiculo = Veiculo.builder()
@@ -54,8 +53,6 @@ public class VeiculoResource implements ResourceDTO<Veiculo, VeiculoRequest, Vei
                 .cilindradas(cilindradas)
                 .modelo(modelo)
                 .palavraDeEfeito(palavraDeEfeito)
-                .fabricante(fabricante)
-                .tipo(tipo)
                 .build();
 
         ExampleMatcher matcher = ExampleMatcher.matchingAll()
@@ -77,7 +74,7 @@ public class VeiculoResource implements ResourceDTO<Veiculo, VeiculoRequest, Vei
 
     @Override
     @GetMapping(value = "/{id}")
-    public ResponseEntity<VeiculoResponse> findById(Long id) {
+    public ResponseEntity<VeiculoResponse> findById(@PathVariable Long id) {
         var encontrado = service.findById( id );
         if (encontrado == null) return ResponseEntity.notFound().build();
         var resposta = service.toResponse( encontrado );
@@ -112,8 +109,8 @@ public class VeiculoResource implements ResourceDTO<Veiculo, VeiculoRequest, Vei
     }
 
     @Transactional
-    @PostMapping(value = "/{id}/acessorio")
-    public VeiculoResponse save(@PathVariable Long id, @RequestBody @Valid AbstractRequest acessorio) {
+    @PostMapping(value = "/{id}/acessorios")
+    public VeiculoResponse save(@PathVariable Long id, @RequestBody @Valid AcessorioResponse acessorio) {
         if (Objects.isNull(acessorio)) return null;
         Veiculo veiculo = service.findById(id);
         Acessorio acessorioEntity = null;

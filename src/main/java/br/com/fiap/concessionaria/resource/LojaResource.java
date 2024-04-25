@@ -36,7 +36,7 @@ public class LojaResource implements ResourceDTO<Loja, LojaRequest, LojaResponse
 
     @GetMapping
     public ResponseEntity<Collection<LojaResponse>> findAll(
-            @RequestParam(name = "caracteristica.nome", required = false) String nome
+            @RequestParam(name = "nome", required = false) String nome
     ) {
 
         Loja loja = Loja.builder()
@@ -87,7 +87,7 @@ public class LojaResource implements ResourceDTO<Loja, LojaRequest, LojaResponse
 
     @Transactional
     @PostMapping(value = "/{id}/veiculos")
-    public LojaResponse save(@PathVariable Long id, @RequestBody @Valid AbstractRequest veiculos) {
+    public LojaResponse save(@PathVariable Long id, @RequestBody @Valid VeiculoResponse veiculos) {
         if (Objects.isNull(veiculos)) return null;
         Loja loja = service.findById(id);
         Veiculo veiculoEntity = null;

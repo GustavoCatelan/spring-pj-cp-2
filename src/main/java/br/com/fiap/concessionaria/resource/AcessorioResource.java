@@ -24,8 +24,8 @@ public class AcessorioResource implements ResourceDTO<Acessorio, AcessorioReques
 
     @GetMapping
     public ResponseEntity<Collection<AcessorioResponse>> findAll(
-            @RequestParam(name = "acessorio.nome", required = false) String nome,
-            @RequestParam(name = "acessorio.preco", required = false) Double preco
+            @RequestParam(name = "nome", required = false) String nome,
+            @RequestParam(name = "preco", required = false) Double preco
     ) {
         Acessorio acessorio = Acessorio.builder()
                 .nome(nome)
@@ -51,7 +51,7 @@ public class AcessorioResource implements ResourceDTO<Acessorio, AcessorioReques
 
     @Override
     @GetMapping(value = "/{id}")
-    public ResponseEntity<AcessorioResponse> findById(Long id) {
+    public ResponseEntity<AcessorioResponse> findById(@PathVariable Long id) {
         var encontrado = service.findById( id );
         if (encontrado == null) return ResponseEntity.notFound().build();
         var resposta = service.toResponse( encontrado );

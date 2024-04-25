@@ -24,8 +24,8 @@ public class FabricanteResource implements ResourceDTO<Fabricante, FabricanteReq
 
     @GetMapping
     public ResponseEntity<Collection<FabricanteResponse>> findAll(
-            @RequestParam(name = "fabricante.nome", required = false) String nome,
-            @RequestParam(name = "fabricante.nomeFantasia", required = false) String nomeFantasia
+            @RequestParam(name = "nome", required = false) String nome,
+            @RequestParam(name = "nomeFantasia", required = false) String nomeFantasia
     ) {
         Fabricante fabricante = Fabricante.builder()
                 .nome(nome)
@@ -51,7 +51,7 @@ public class FabricanteResource implements ResourceDTO<Fabricante, FabricanteReq
 
     @Override
     @GetMapping(value = "/{id}")
-    public ResponseEntity<FabricanteResponse> findById(Long id) {
+    public ResponseEntity<FabricanteResponse> findById(@PathVariable Long id) {
         var encontrado = service.findById( id );
         if (encontrado == null) return ResponseEntity.notFound().build();
         var resposta = service.toResponse( encontrado );

@@ -1,10 +1,12 @@
 package br.com.fiap.concessionaria.dto.request;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record CaracteristicaRequest(
 
+        @Valid
         AbstractRequest veiculo,
 
         @Size(min = 3, max = 30)

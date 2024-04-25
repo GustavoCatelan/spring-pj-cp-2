@@ -25,15 +25,13 @@ public class CaracteristicaResource implements ResourceDTO<Caracteristica, Carac
 
     @GetMapping
     public ResponseEntity<Collection<CaracteristicaResponse>> findAll(
-            @RequestParam(name = "caracteristica.nome", required = false) String nome,
-            @RequestParam(name = "caracteristica.descricao", required = false) String descricao,
-            @RequestParam(name = "caracteristica.veiculo", required = false)Veiculo veiculo
+            @RequestParam(name = "nome", required = false) String nome,
+            @RequestParam(name = "descricao", required = false) String descricao
     ) {
 
         Caracteristica caracteristica = Caracteristica.builder()
                 .nome( nome )
                 .descricao (descricao)
-                .veiculo (veiculo)
                 .build();
 
         ExampleMatcher matcher = ExampleMatcher.matchingAll()

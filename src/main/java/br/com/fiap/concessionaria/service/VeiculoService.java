@@ -44,11 +44,6 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
     @Override
     public VeiculoResponse toResponse(Veiculo e) {
 
-        Set<AcessorioResponse> acessorioResponses = e.getAcessorios()
-                .stream()
-                .map(acessorioService::toResponse)
-                .collect(Collectors.toSet());
-
         return VeiculoResponse.builder()
                 .id( e.getId() )
                 .nome(e.getNome())
