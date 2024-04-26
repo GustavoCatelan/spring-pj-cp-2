@@ -32,6 +32,10 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
 
     @Override
     public Veiculo toEntity(VeiculoRequest v) {
+
+        var fabricante = fabricanteService.findById( v.fabricante().id() );
+        var tipo = tipoVeiculoService.findById( v.tipo().id() );
+
         return Veiculo.builder()
                 .nome( v.nome() )
                 .cor(v.cor())
@@ -39,6 +43,8 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
                 .cilindradas(v.cilindradas())
                 .modelo(v.modelo())
                 .palavraDeEfeito(v.palavraDeEfeito())
+                .fabricante(fabricante)
+                .tipo(tipo)
                 .build();
     }
     @Override

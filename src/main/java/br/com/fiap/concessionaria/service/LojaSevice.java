@@ -23,8 +23,10 @@ public class LojaSevice implements ServiceDTO<Loja, LojaRequest, LojaResponse>{
 
     @Autowired
     private VeiculoService veiculoService;
+
     @Override
     public Loja toEntity(LojaRequest r) {
+
         return Loja.builder()
                 .nome( r.nome() )
                 .build();

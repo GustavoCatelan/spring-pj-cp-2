@@ -97,4 +97,14 @@ public class LojaResource implements ResourceDTO<Loja, LojaRequest, LojaResponse
         loja.getVeiculosComercializados().add(veiculoEntity);
         return service.toResponse(loja);
     }
+
+    @GetMapping(value = "/{id}/veiculos")
+    public ResponseEntity<List<Veiculo>> findVeiculoByLojaId(@PathVariable Long id) {
+        Loja loja = service.findById(id);
+        if (loja == null) {
+            return ResponseEntity.notFound().build();
+        }
+        List<Veiculo> veiculos = (List<Veiculo>) loja.getVeiculosComercializados();
+        return ResponseEntity.ok(veiculos);
+    }
 }
