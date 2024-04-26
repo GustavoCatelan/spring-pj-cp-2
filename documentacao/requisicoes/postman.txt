@@ -1,0 +1,105 @@
+CARACTERISTICA:
+
+GET http://localhost:80/caracteristica
+
+POST http://localhost:80/caracteristica
+{
+  "veiculo": {"id":1},
+  "nome": "cor vermelha",
+  "descricao": "a cor esta fosca"
+}
+
+GET http://localhost:80/caracteristica/{{id}}
+
+ACESSORIO:
+
+GET http://localhost:80/acessorio
+
+POST http://localhost:80/acessorio
+{
+  "nome": "retrovisor",
+  "preco": 100
+}
+
+GET http://localhost:80/acessorio/{{id}}
+
+FABRICANTE:
+
+GET http://localhost:80/fabricante
+
+POST http://localhost:80/fabricante
+{
+  "nome": "InovaTech",
+  "nomeFantasia": "Inova-X"
+}
+
+GET http://localhost:80/fabricante/{{id}}
+
+LOJA:
+
+GET http://localhost:80/loja
+
+POST http://localhost:80/loja
+{
+  "nome": "InovaTech"
+}
+
+GET http://localhost:80/loja/{{id}}
+
+GET http://localhost:80/loja/{{id}}/veiculos
+
+POST http://localhost:80/loja/{{id}}/veiculos
+{
+  "modelo": "Flex",
+  "anoDeFabricacao": 1997,
+  "tipo": {"id": 1},
+  "cor": "vermelho",
+  "fabricante": {"id":1},
+  "preco": 230000,
+  "nome": "GTR",
+  "palavraDeEfeito": "Incrivel",
+  "cilindradas": 100
+}
+
+
+VEICULOS:
+
+GET http://localhost:80/veiculos
+
+POST http://localhost:80/veiculos
+{
+  "preco": 250000,
+  "modelo": "Flex",
+  "anoDeFabricacao": 2020,
+  "nome": "GTR",
+  "tipo": {
+      "id": 1
+  },
+  "fabricante": {
+      "id": 1
+  },
+  "cor": "Preto",
+  "palavraDeEfeito": "Incrivel",
+  "cilindradas": 100
+}
+
+GET http://localhost:80/veiculos/{{id}}
+
+GET http://localhost:80/veiculos/{{id}}/acessorio
+
+POST http://localhost:80/veiculos/{{id}}/acessorio
+{
+  "nome": "aerofólio",
+  "preco": 950
+}
+
+TIPO VEICULO:
+
+GET http://localhost:80/tipoVeiculo
+
+POST http://localhost:80/tipoVeiculo
+{
+  "nome": "Corrida"
+}
+
+GET http://localhost:80/tipoVeiculo/{{id}}
