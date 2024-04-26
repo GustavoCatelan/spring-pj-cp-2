@@ -1,6 +1,7 @@
 package br.com.fiap.concessionaria.resource;
 
 import br.com.fiap.concessionaria.dto.request.AbstractRequest;
+import br.com.fiap.concessionaria.dto.request.AcessorioRequest;
 import br.com.fiap.concessionaria.dto.request.VeiculoRequest;
 import br.com.fiap.concessionaria.dto.response.AcessorioResponse;
 import br.com.fiap.concessionaria.dto.response.VeiculoResponse;
