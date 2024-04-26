@@ -24,7 +24,7 @@ public record VeiculoResponse(
 
         String nome,
 
-        String palvaraDeEfeito,
+        String palavraDeEfeito,
 
         Short cilindradas,
 

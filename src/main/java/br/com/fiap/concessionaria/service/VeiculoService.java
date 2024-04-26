@@ -57,7 +57,7 @@ public class VeiculoService implements ServiceDTO<Veiculo, VeiculoRequest, Veicu
                 .preco(e.getPreco())
                 .cilindradas(e.getCilindradas())
                 .modelo(e.getModelo())
-                .palvaraDeEfeito(e.getPalavraDeEfeito())
+                .palavraDeEfeito(e.getPalavraDeEfeito())
                 .fabricante(fabricanteService.toResponse( e.getFabricante() ))
                 .tipo(tipoVeiculoService.toResponse( e.getTipo() ))
                 .build();
